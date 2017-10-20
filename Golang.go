@@ -1,6 +1,11 @@
 func WordNumberCase(number int, ifOne string, ifTwo string, ifFive string, addNumber bool) string {
 	result := ""
-	switch number % 10 {
+	num := number
+	if number < 0 {
+		num = -number
+	}
+	m := num % 10
+	switch m {
 	case 1:
 		result = ifOne
 		break
@@ -11,9 +16,11 @@ func WordNumberCase(number int, ifOne string, ifTwo string, ifFive string, addNu
 		result = ifFive
 		break
 	}
-	m := number % 100
-	if m >= 11 && m <= 14 {
-		result = ifFive
+	if m >= 1 && m <= 4 {
+		m = num % 100
+		if m >= 11 && m <= 14 {
+			result = ifFive
+		}
 	}
 	if addNumber {
 		result = strconv.Itoa(number) + result

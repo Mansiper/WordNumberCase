@@ -1,7 +1,9 @@
 function WordNumberCase(number, ifOne, ifTwo, ifFive, addNumber)
 {
 	var result;
-	switch (number % 10)
+	var num = number >= 0 ? number : -number;
+	var m = num % 10;
+	switch (m)
 	{
 		case 1:
 			result = ifOne;
@@ -15,9 +17,11 @@ function WordNumberCase(number, ifOne, ifTwo, ifFive, addNumber)
 			result = ifFive;
 			break;
 	}
-	var m = number % 100;
-	if (m >= 11 && m <= 14)
-		result = ifFive;
+	if (m >= 1 && m <= 4) {
+		m = num % 100;
+		if (m >= 11 && m <= 14)
+			result = ifFive;
+	}
 	if (addNumber)
 		result = `${number}${result}`;
 	return result;
